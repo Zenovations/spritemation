@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Spritemation test</title>
+
+    <link rel="stylesheet" href="../../lib/nouislider/nouislider.css" />
+    <link rel="stylesheet" href="example.css">
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script type="text/javascript" src="../../lib/js/jquery.unitconverter.js"></script>
+    <script type="text/javascript" src="../../lib/nouislider/jquery.nouislider.js"></script>
+    <script type="text/javascript" src="../jquery.spritemation.js"></script>
+
+    <!-- HERE IS WHERE ALL THE FUN IS! -->
+    <script type="text/javascript" src="example.js"></script>
+</head>
+<body>
+
+<div class="clearfix content">
+    <fieldset>
+        <legend>Horizontal Sprite</legend>
+        <div id="sprite"></div>
+        <a href='sprite.png'>show</a>
+    </fieldset>
+    <fieldset class="clearfix">
+        <legend>Vertical Sprite</legend>
+        <div id="vertical-sprite"></div>
+        <a href='vertical_sprite.png'>show</a>
+    </fieldset>
+</div>
+<label><input type="checkbox" id="noanimate" /> no animation</label>
+<div class="outer"><span>Step</span><div id="step" class="noUiSlider"></div><h3>0</h3></div>
+<div class="outer"><span>Duration</span><div id="duration" class="noUiSlider"></div><h3>250</h3></div>
+
+<div class="clearfix content">
+   <fieldset>
+      <legend>Modulating/Cycling Sprite</legend>
+      <div id="boid"></div>
+      <a href='boid-small.png'>show</a>
+   </fieldset>
+</div>
+<button id="boidButton">Run</button>
+<div class="outer"><span>Cycles</span><div id="cycles" class="noUiSlider"></div><h3>5</h3></div>
+<div class="outer"><span>FPS</span><div id="fps" class="noUiSlider"></div><h3>20</h3></div>
+
+</body>
+</html>

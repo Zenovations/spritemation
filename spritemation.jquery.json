@@ -1,0 +1,33 @@
+{
+  "name": "spritemation",
+  "title": "Spritemation - CSS sprite animator",
+  "description": "The spritemation plugin animates CSS sprites (background images on a DOM element which are larger than the element's viewable portal) through a sequence of frames to create the illusion of transitions or movement.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/zenovations/spritemation",
+  "author": {
+    "name": "katowulf",
+    "email": "katowulf@gmail.com",
+    "url": "http://www.michaelwulf.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zenovations/spritemation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zenovations/spritemation/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/zenovations/spritemation/blob/master/LICENSE-MIT"
+    },
+    {
+      "type": "GPL",
+      "url": "https://github.com/zenovations/spritemation/blob/master/LICENSE-GPL"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">= 1.6"
+  },
+  "keywords": []
+}
