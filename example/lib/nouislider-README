@@ -1,0 +1,15 @@
+	
+	Major new version released! (2.0.0)
+	
+	- Improved stability
+	- Added much request 'step' feature, which allows the slider to snap in place.
+	- Added touch support for iPad, iPhone and other 'touchstart' capable devices.
+	- Fixed many bugs.
+	- Drasticly improved stylability, and added a new -much smaller- default stylesheet.
+	- Reworked the entire documentation.
+	- Reduced the ammount of options, without reducing features.
+	- noUiSlider examples page provides detailed examples.
+	
+	View documentation on:
+	
+	http://refreshless.com/nouislider/

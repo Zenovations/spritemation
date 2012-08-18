@@ -1,6 +1,14 @@
+
 # Spritemation - CSS sprite animator
 
-The spritemation plugin animates CSS sprites (background images on a DOM element which are larger than the element's viewable portal) through a sequence of frames to create the illusion of transitions or movement.
+The spritemation plugin animates CSS sprites (background images on a DOM element which are larger than the element's
+viewable portal) through a sequence of frames to create the illusion of transitions or movement.
+
+If you are not familiar with CSS sprites, begin by learning about those:
+http://www.noobcube.com/tutorials/html-css/css-background-image-sprites-a-beginners-guide-/
+http://nicolasgallagher.com/css-background-image-hacks/
+
+# Documentation
 
 ## Getting Started
 Download the [production version][min] or the [development version][max].
@@ -20,26 +28,103 @@ jQuery(function($) {
 </script>
 ```
 
-## Documentation
-_(Coming soon)_
-
 ## Examples
-_(Coming soon)_
 
-## Release History
-_(Nothing yet)_
+It can be called in one of two ways: `spritemation( endStep, duration )` or `spritemation( opts )`
 
-## License
+```javascript
+   // cycle from frame 0 to frame 10 in 1 second (at 10 fps)
+   $('#sprite').spritemation( 10, 1000 );
+
+   // or...
+   $('#sprite').spritemation( { end: 10, fps: 100 } );
+
+   // cycle backward from frame 10 to 5 in 1 second (at 5 fps)
+   $('#sprite').spritemation( { start: 10, end: 5 }, 1000 );
+
+   // or...
+   $('#sprite').spritemation( { start: 10, end: 5, fps: 5 } );
+
+   // or...
+   $('#sprite').spritemation( { start: 10, end: 5, duration: 1000 } );
+
+   // skip to the 4th frame without any animation (use duration of zero)
+   $('#sprite').spritemation( 4, 0 );
+```
+
+## OPTIONS
+
+`opts` accepts any of the following arguments:
+
+   {int}      end        (default=0) which frame are we going to animate to?
+   {int}      fps        (default=10) how fast should we animate? (frames per second)
+   {int}      duration   (default=null) how long should we animate? (milliseconds, see below)
+   {int}      cycles     (default=1) see below
+   {boolean}  modulate   (default=false) cycles back and forth (see below)
+   {function} callback  {default=null} executed when animation completes, receives final frame position
+   {int}      start       which frame to begin the animation from (defaults to its current position)
+
+The spritemation automatically calculates the following arguments. It doesn't probably make sense to
+override any of them unless you want the animations to act weird, but you could do so as an (unnecessary)
+optimization (if they happen to be known ahead of time):
+
+   {int}     frameWidth   the width of the visible pane (of one frame of the sprite image)
+   {int}     frameHeight  the height of the visible pane (of one frame of the sprite image)
+   {boolean} vertical     is this sprite vertically oriented?
+
+## ANIMATION LENGTH AND SPEED
+
+For convenience, there are two ways to control the speed of the animation. If you want it to run in parallel with
+some other animations, you can utilize the `duration`, which will ensure they start and stop at the same time.
+
+However, this causes it to animate faster/slower depending on how far it's travelling (in other words, it has
+to get from 0-10 in the same amount of time that it gets from 0-5). If that's undesirable, you can utilize the
+`fps` argument to set how fast each frame should tick by.
+
+In the case that both exist, `duration` takes precedence, except when using the cycle option (see below).
+
+## CYCLIC ANIMATIONS
+
+Using `cycles`, it is possible to make spritemation go through the frames more than once. It can `modulate`
+(go back and forth) through the frames or restart each time through.
+
+Examples:
+<code>
+   // cycle frames 9-0 (backwards), a total of 10 times (100 frames) in 1 second, starting back at 9 each time 0 is reached
+   spritemation({ start: 9, end: 0, cycles: 10 }, 1000 );
+
+   // modulate frames 0-10 a total of 5 times each direction (100 frames) in 1 second, reversing from 10-0
+   // before going forward again
+   spritemation({ start: 0, end: 10, cycles: 5, modulate: true }, 1000 );
+</code>
+
+Note that above we specified the start positions, which would begin the spritemation by positioning the background
+to the start frame. This is not necessary if the sprite is already positioned at the correct frame or we don't
+care where it starts from.
+
+# Support
+
+Use [the issue tracker][issuetracker] to report problems, request features, and ask questions.
+
+   [issuetracker]: http://github.com/Zenovations/spritemation/issues/
+
+# License
 Copyright (c) 2012 katowulf  
 Licensed under the MIT, GPL licenses.
+
+# Development
+
+## Release History
+
+### 0.1.0
+Release Date: 8/18/2012
+The initial release
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/cowboy/grunt).
 
 ### Important notes
-Please don't edit files in the `dist` subdirectory as they are generated via grunt. You'll find source code in the `src` subdirectory!
-
-While grunt can run the included unit tests via PhantomJS, this shouldn't be considered a substitute for the real thing. Please be sure to test the `test/*.html` unit test file(s) in _actual_ browsers.
+Please don't edit files in the root directory as they are generated via grunt. You'll find source code in the `src` subdirectory!
 
 ### Installing grunt
 _This assumes you have [node.js](http://nodejs.org/) and [npm](http://npmjs.org/) installed already._
@@ -47,18 +132,3 @@ _This assumes you have [node.js](http://nodejs.org/) and [npm](http://npmjs.org/
 1. Test that grunt is installed globally by running `grunt --version` at the command-line.
 1. If grunt isn't installed globally, run `npm install -g grunt` to install the latest version. _You may need to run `sudo npm install -g grunt`._
 1. From the root directory of this project, run `npm install` to install the project's dependencies.
-
-### Installing PhantomJS
-
-In order for the qunit task to work properly, [PhantomJS](http://www.phantomjs.org/) must be installed and in the system PATH (if you can run "phantomjs" at the command line, this task should work).
-
-Unfortunately, PhantomJS cannot be installed automatically via npm or grunt, so you need to install it yourself. There are a number of ways to install PhantomJS.
-
-* [PhantomJS and Mac OS X](http://ariya.ofilabs.com/2012/02/phantomjs-and-mac-os-x.html)
-* [PhantomJS Installation](http://code.google.com/p/phantomjs/wiki/Installation) (PhantomJS wiki)
-
-Note that the `phantomjs` executable needs to be in the system `PATH` for grunt to see it.
-
-* [How to set the path and environment variables in Windows](http://www.computerhope.com/issues/ch000549.htm)
-* [Where does $PATH get set in OS X 10.6 Snow Leopard?](http://superuser.com/questions/69130/where-does-path-get-set-in-os-x-10-6-snow-leopard)
-* [How do I change the PATH variable in Linux](https://www.google.com/search?q=How+do+I+change+the+PATH+variable+in+Linux)
