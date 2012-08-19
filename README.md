@@ -7,7 +7,7 @@ If you are not familiar with CSS sprites, begin by learning about those:
 http://www.noobcube.com/tutorials/html-css/css-background-image-sprites-a-beginners-guide-/
 http://nicolasgallagher.com/css-background-image-hacks/
 
-**Is it big?**
+**Whatsit Cost?**
 
  3.1K minified; 1.3K gzipped.
 
@@ -32,7 +32,7 @@ In your web page:
 <script src="dist/spritemation.min.js"></script>
 <script>
 jQuery(function($) {
-  $.awesome(); // "awesome"
+   $('#sprite').spritemation( 10 );
 });
 </script>
 ```
@@ -42,11 +42,14 @@ jQuery(function($) {
 It can be called in one of two ways: `spritemation( endStep, duration )` or `spritemation( opts )`
 
 ```javascript
+   // cycle from frame 0 to frame 10 however fast it gets there (default is 30 fps, so pretty darn quickly)
+   $('#sprite').spritemation( 10 );
+
    // cycle from frame 0 to frame 10 in 1 second (at 10 fps)
    $('#sprite').spritemation( 10, 1000 );
 
    // or...
-   $('#sprite').spritemation( { end: 10, fps: 100 } );
+   $('#sprite').spritemation( { end: 10, fps: 10 } );
 
    // cycle backward from frame 10 to 5 in 1 second (at 5 fps)
    $('#sprite').spritemation( { start: 10, end: 5 }, 1000 );
