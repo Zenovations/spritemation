@@ -1,6 +1,8 @@
 {
-  "name": "jquery-plugin",
-  "version": "0.0.0-ignored",
+  "name": "spritemation",
+  "title": "Spritemation - CSS sprite animator",
+  "homepage": "http://github.com/Zenovations/spritemation",
+  "version": "0.1.0",
   "engines": {
     "node": ">= 0.6.0"
   },

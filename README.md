@@ -1,20 +1,29 @@
 
 # Spritemation - CSS sprite animator
 
-The spritemation plugin animates CSS sprites (background images on a DOM element which are larger than the element's
-viewable portal) through a sequence of frames to create the illusion of transitions or movement.
+The spritemation plugin animates CSS sprites through a sequence of frames using the background-position property.
 
 If you are not familiar with CSS sprites, begin by learning about those:
 http://www.noobcube.com/tutorials/html-css/css-background-image-sprites-a-beginners-guide-/
 http://nicolasgallagher.com/css-background-image-hacks/
+
+**Is it big?**
+
+ 3.1K minified; 1.3K gzipped.
+
+**Why would you use this instead of an animated GIF?**
+
+If you are asking this question, and the benefits of a plugin--being able to control where and when the animation begins,
+dynamically alter the speed, reverse or cycle a given number of times, pause and continue at will--are not obvious,
+then you probably want an animated gif and not this plugin.
 
 # Documentation
 
 ## Getting Started
 Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.github.com/zenovations/spritemation/master/dist/spritemation.min.js
-[max]: https://raw.github.com/zenovations/spritemation/master/dist/spritemation.js
+[min]: https://raw.github.com/zenovations/spritemation/master/spritemation.min.js
+[max]: https://raw.github.com/zenovations/spritemation/master/spritemation.js
 
 In your web page:
 

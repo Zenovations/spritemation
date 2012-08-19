@@ -1,3 +1,7 @@
+/*! Spritemation - CSS sprite animator - v0.1.0 - 2012-08-18
+* https://github.com/Zenovations/spritemation
+* Copyright (c) 2012 Michael 'Kato' Wulf; Licensed MIT, GPL */
+
 
 (function($) {
    /**
