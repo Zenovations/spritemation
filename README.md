@@ -9,7 +9,7 @@ http://nicolasgallagher.com/css-background-image-hacks/
 
 **Whatsit Cost?**
 
- 3.1K minified; 1.3K gzipped.
+ 5.3K minified; 2.1K gzipped.
 
 **Why would you use this instead of an animated GIF?**
 
