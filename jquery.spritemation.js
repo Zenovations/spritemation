@@ -93,12 +93,11 @@
     * @param {int}        [duration] can also be declared in opts
     */
    $.fn.spritemation = function(opts, duration) {
+      // clear any running sprite animation so when we can run ours immediately (and get accurate starting datum)
       return this.each(function() {
-         // clear any running sprite animation so when we can run ours immediately (and get accurate starting datum)
-         var $this = $(this).stop('spritemation', true);
          // we may have to load an image to get the args, so wait for promise to fulfill
-         _getArgs(opts, duration, $this).done($.proxy(function(args) {
-            var $self = $(this), it = new CycleIterator(args);
+         _getArgs(opts, duration, $(this)).done($.proxy(function(args) {
+            var $self = $(this).stop('spritemation', true), it = new CycleIterator(args);
             if( args.duration === 0 || args.start == args.end ) {
                // show a frame number without any animation (with duration zero)
                $self.css('background-position', _bgPos(args, args.end));
@@ -107,13 +106,10 @@
             else {
                var frame, delay = 1000/args.fps, _checkQueue;
 
+               // a callback to check the queue and see if all the frames have loaded
                if( args.callback ) {
-                  // a callback to check the queue and see if all the frames have loaded or if clearQueue/stop
-                  // was called, this way we can accurately invoke our callback. We only declare the function
-                  // if a callback is to be invoked, so as to not be wasteful
-                  _checkQueue = function() {
-                     var n = $self.queue('spritemation').length;
-                     if( n === 0 ) {
+                  _checkQueue = function(lastStep) {
+                     if( lastStep && args.callback ) {
                         args.callback(frame);
                      }
                   }
@@ -196,7 +192,7 @@
       return function( next ) {
          $this.css('background-position', bgPos);
          next();
-         callback && callback();
+         callback && callback( $this.queue('spritemation').length < 1 );
       };
    }
 
@@ -256,9 +252,12 @@
                $this.data('spritemation', {
                   frameHeight: args.frameHeight,
                   frameWidth: args.frameWidth,
-                  vertical: args.vertical
+                  vertical: args.vertical,
+                  clearQueue: false
                })
             }
+
+            args.cache = cache;
 
             def.resolve(args);
          }
@@ -287,11 +286,12 @@
    }
 
    function _bgPos(args, step) {
+      var x = args.vertical? 0 : _calcBgPx(args, step, false),
+          y = args.vertical? _calcBgPx(args, step, true)+'px' : 0;
       return [
-         (args.vertical? 0 : _calcBgPx(args, step, false))+'px',
-         ' ',
-         (args.vertical? _calcBgPx(args, step, true)+'px' : 0),
-      ].join('');
+         x? x + 'px' : 0,
+         y? y + 'px' : 0
+      ].join(' ');
    }
 
    function _calcBgPx(args, step, vertical) {
