@@ -7,6 +7,9 @@ If you are not familiar with CSS sprites, begin by learning about those:
 http://www.noobcube.com/tutorials/html-css/css-background-image-sprites-a-beginners-guide-/
 http://nicolasgallagher.com/css-background-image-hacks/
 
+It can auto-detect the sprite's frame size, height and width, and whether frames are vertically or horizontally
+oriented (based on height/width of the sprite image).
+
 **Whatsit Cost?**
 
  5.3K minified; 2.1K gzipped.
@@ -82,7 +85,12 @@ optimization (if they happen to be known ahead of time):
 
    {int}     frameWidth   the width of the visible pane (of one frame of the sprite image)
    {int}     frameHeight  the height of the visible pane (of one frame of the sprite image)
-   {boolean} vertical     is this sprite vertically oriented?
+   {boolean} vertical     is this sprite vertically oriented? set this if vertical sprites don't behave
+
+**NOTE TO DEVS USING CHROME**: When viewing files in Chrome on the local filesystem (with file:/// in the url
+instead of http), this plugin can't determine the height/width of an image (because of a security restriction in Chrome).
+So if you want to use vertical sprites with Chrome and are too lazy to use a web server, you'll have to add
+`vertical: true`; it will be hard but you can handle it.
 
 ## ANIMATION LENGTH AND SPEED
 
